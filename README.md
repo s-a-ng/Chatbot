@@ -28,7 +28,7 @@ Chatbot:DefineFunction({
         Emotion = {
             Required = true,
             Type = "string",
-            Enum = GetKeys(self.Emotions),
+            Enum = {"rage", "joy", "sadness"},
             Description = "The type of emotion you're experiencing"
         }
     }
