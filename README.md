@@ -2,7 +2,7 @@
 local Chatbot = Chatbot.new({
     APIKey = "sk-",
     Model = "gpt-3.5-turbo",
-    MaxSetContext = 3, -- bad at naming
+    MaxSetContext = 3, -- amount of message response pairs in context
     MaxTokens = 80,
     BaseURL = "https://api.openai.com"
 })
