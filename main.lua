@@ -1,7 +1,12 @@
 local HTTPService = game:GetService("HttpService")
 
 local Chatbot = {}
-
+local function req(...)
+	if game.RunService:IsServer() then 
+		return HttpService:RequestAsync(...)
+	end
+	return request(...)
+end
 
 
 
@@ -52,9 +57,8 @@ function __HandleToolCalls(self, ToolCalls)
 end
 
 function Chatbot:GenerateCompletion()
-	print(self.ChatbotMemory)
 	local Success, Result = pcall(function()
-		return HTTPService:RequestAsync({
+		return req({
 			Url = self.BaseURL .. "/v1/chat/completions", 
 			Method = "POST",
 			Headers = {
