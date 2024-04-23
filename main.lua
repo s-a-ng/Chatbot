@@ -79,6 +79,7 @@ function Chatbot:GenerateCompletion()
 		warn("Request to AI Provider failed", Result)
 		return 
 	end
+	warn(Result.Body)
 	Result = HTTPService:JSONDecode(Result.Body)
 
 	warn(Result, type(Result))
