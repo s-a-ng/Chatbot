@@ -12,8 +12,8 @@ end
 
 local function Merge(...)
 	local New = {}
-	for _, table in pairs({...}) do 
-		for index, value in table do
+	for _, tablee in pairs({...}) do 
+		for index, value in pairs(tablee) do
 			table.insert(New, value)
 		end
 	end
