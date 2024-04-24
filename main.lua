@@ -10,6 +10,16 @@ end
 
 
 
+local function Merge(...)
+	local New = {}
+	for _, table in pairs({...}) do 
+		for index, value in table do
+			table.insert(New, value)
+		end
+	end
+	return New
+end
+
 function Chatbot:AddUserMessage(Message)
 	table.insert(self.ChatbotMemory, {role = "user", content = Message})
 end
@@ -67,7 +77,7 @@ function Chatbot:GenerateCompletion()
 			},
 			Body = HTTPService:JSONEncode({
 				model = self.Model, 
-				messages = {{role = "system", content = self.MainPrompt}, unpack(self.ChatbotMemory)},
+				messages = Merge({{role = "system", content = self.MainPrompt}}, self.ChatbotMemory),
 				tools = self.Tools,
 				max_tokens = self.MaxTokens,
 				temperature = 0.7
